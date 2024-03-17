@@ -8,34 +8,23 @@ body {
     color: gold;
 }
 
-.image-container {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.image-container img {
-    margin-right: 20px;
-}
-
 .antrenor {
     clear: both;
     margin-bottom: 20px;
 }
 
-#Antrenori {
-    text-align: right;
+.antrenor img {
+    float: left; /* Imaginea va fi poziționată la stânga */
+    margin-right: 20px; /* Adaugăm spațiu între imagine și text */
 }
 
-#Antrenori p,
-#Antrenori img {
-    text-align: right;
-    margin-left: auto;
-    margin-right: 10px;
+#Antrenori p {
+    overflow: hidden; /* Asigurăm că textul nu va depăși imaginea */
 }
 
 header {
     background-color: #333;
-    color: gold; /* Am schimbat culoarea textului aici */
+    color: gold;
     padding: 20px;
 }
 
