@@ -14,12 +14,12 @@ body {
 }
 
 .antrenor img {
-    float: left; /* Imaginea va fi poziționată la stânga */
-    margin-right: 20px; /* Adaugăm spațiu între imagine și text */
+    float: left; 
+    margin-right: 20px; 
 }
 
 #Antrenori p {
-    overflow: hidden; /* Asigurăm că textul nu va depăși imaginea */
+    overflow: hidden; 
 }
 
 header {
