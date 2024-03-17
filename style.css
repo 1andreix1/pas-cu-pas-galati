@@ -21,6 +21,9 @@ body {
 #Antrenori p {
     overflow: hidden; 
 }
+#servicii {
+    clear: both;
+}
 
 header {
     background-color: #333;
