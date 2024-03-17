@@ -90,32 +90,26 @@ Odată ce Sara și Rubin au început să lucreze împreună, au creat o legătur
     </div>
     </section>
 
-   <section id="recenzii">
+    <section id="recenzii">
         <h2>Recenzii</h2>
-        <div class="review">
-            <h3>Numele Utilizatorului 1</h3>
-            <div class="stars">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque euismod risus vel magna feugiat, nec vulputate velit vestibulum."</p>
+        <div class="review-form">
+            <h3>Adaugă o recenzie:</h3>
+            <form id="add-review-form">
+                <label for="username">Numele tău:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="rating">Evaluare:</label><br>
+                <input type="number" id="rating" name="rating" min="1" max="5"><br>
+                <label for="comment">Recenzie:</label><br>
+                <textarea id="comment" name="comment" rows="4"></textarea><br><br>
+                <button type="submit">Trimite</button>
+            </form>
         </div>
-        <div class="review">
-            <h3>Numele Utilizatorului 2</h3>
-            <div class="stars">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque euismod risus vel magna feugiat, nec vulputate velit vestibulum."</p>
+        <div class="reviews-container">
+            <!-- Recenziile vor fi adăugate aici prin JavaScript -->
         </div>
-        <!-- Adaugă alte recenzii aici -->
     </section>
+
+    <script src="script.js"></script>
         
     <footer>
         <p>&copy; 2024 Pas-cu-pas Galați. Toate drepturile rezervate.</p>
