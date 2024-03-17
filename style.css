@@ -13,23 +13,30 @@ body {
 }
 
 .personal-card {
-    text-align: center;
     margin-bottom: 20px;
+    overflow: hidden; 
 }
 
 .personal-card img {
+    float: right; 
     border-radius: 50%;
     border: 2px solid gold;
-    margin-bottom: 10px;
+    margin-left: 20px;
 }
 
-.personal-card h3 {
+.personal-info {
+    float: left; 
+    width: calc(100% - 240px);
+}
+
+.personal-info h3 {
     margin-top: 0;
 }
 
-.personal-card p {
+.personal-info p {
     margin-bottom: 0;
 }
+
 #servicii {
     clear: both;
 }
