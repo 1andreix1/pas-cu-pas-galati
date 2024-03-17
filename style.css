@@ -73,3 +73,10 @@ footer {
     height: 200px;
     margin-right: 20px;
 }
+#relatia .img-container {
+    display: flex;
+}
+
+#relatia img {
+    margin-right: 20px;
+}
