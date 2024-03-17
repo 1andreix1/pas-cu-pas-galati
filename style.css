@@ -82,35 +82,47 @@ footer {
 #relatia img {
     margin-right: 20px;
 }
-
-.portrait {
-    width: auto;
-    height: 7000px; 
+.review-form {
+    margin-bottom: 20px;
 }
+
+.review-form label {
+    display: block;
+}
+
+.review-form input[type="text"],
+.review-form input[type="number"],
+.review-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.review-form textarea {
+    resize: vertical;
+}
+
+.review-form button {
+    padding: 10px 20px;
+    background-color: gold;
+    color: #333;
+    border: none;
+    cursor: pointer;
+}
+
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review {
+    width: 45%;
+    margin-right: 5%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid gold;
+}
+
 .stars {
-    unicode-bidi: bidi-override;
     color: gold;
-    font-size: 25px;
-    width: fit-content;
-    display: inline-block;
-}
-
-.stars .star {
-    display: inline-block;
-    position: relative;
-    width: 1em;
-}
-
-.stars .star::before {
-    content: '\2605';
-    position: absolute;
-    opacity: 0; 
-}
-
-.stars .star:hover::before,
-.stars .star:hover~.star::before {
-    opacity: 1;
-.landscape {
-    width: 5000px; 
-    height: auto;
+    font-size: 20px;
 }
