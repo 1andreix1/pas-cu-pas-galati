@@ -8,18 +8,27 @@ body {
     color: gold;
 }
 
-.antrenor {
-    clear: both;
+#personal {
+    padding: 20px;
+}
+
+.personal-card {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.antrenor img {
-    float: left; 
-    margin-right: 20px; 
+.personal-card img {
+    border-radius: 50%;
+    border: 2px solid gold;
+    margin-bottom: 10px;
 }
 
-#Antrenori p {
-    overflow: hidden; 
+.personal-card h3 {
+    margin-top: 0;
+}
+
+.personal-card p {
+    margin-bottom: 0;
 }
 #servicii {
     clear: both;
