@@ -4,7 +4,7 @@ body {
     padding: 0;
 }
 
-.selector {
+.gold-text {
     color: gold;
 }
 
@@ -14,12 +14,14 @@ body {
 }
 
 .image-container img {
-    margin-left: 10000px;
+    margin-right: 20px;
 }
+
 .antrenor {
-    clear: both; 
-    margin-bottom: 20px; 
+    clear: both;
+    margin-bottom: 20px;
 }
+
 #Antrenori {
     text-align: right;
 }
@@ -28,12 +30,12 @@ body {
 #Antrenori img {
     text-align: right;
     margin-left: auto;
-    margin-right: 10;
+    margin-right: 10px;
 }
 
 header {
     background-color: #333;
-    color: gold;
+    color: gold; /* Am schimbat culoarea textului aici */
     padding: 20px;
 }
 
