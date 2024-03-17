@@ -75,8 +75,8 @@ footer {
 }
 #relatia .img-container {
     display: flex;
-    justify-content: center; /* Centrare pe orizontală */
-    align-items: center; /* Centrare pe verticală */
+    justify-content: center; 
+    align-items: center; 
 }
 
 #relatia img {
@@ -85,11 +85,10 @@ footer {
 
 .portrait {
     width: auto;
-    height: 700px; /* sau dimensiunea potrivită pentru imaginile portret */
+    height: 7000px; 
 }
 
 .landscape {
-    width: 500px; /* sau dimensiunea potrivită pentru imaginea peisaj */
+    width: 5000px; 
     height: auto;
 }
-
