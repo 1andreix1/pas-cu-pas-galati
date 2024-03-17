@@ -16,6 +16,16 @@ body {
 .image-container img {
     margin-left: 10000px;
 }
+#Antrenori {
+    text-align: right;
+}
+
+#Antrenori p,
+#Antrenori img {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+}
 
 header {
     background-color: #333;
