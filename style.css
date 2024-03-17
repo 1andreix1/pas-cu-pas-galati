@@ -75,8 +75,21 @@ footer {
 }
 #relatia .img-container {
     display: flex;
+    justify-content: center; /* Centrare pe orizontală */
+    align-items: center; /* Centrare pe verticală */
 }
 
 #relatia img {
     margin-right: 20px;
 }
+
+.portrait {
+    width: auto;
+    height: 700px; /* sau dimensiunea potrivită pentru imaginile portret */
+}
+
+.landscape {
+    width: 500px; /* sau dimensiunea potrivită pentru imaginea peisaj */
+    height: auto;
+}
+
