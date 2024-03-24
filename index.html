@@ -1,70 +1,48 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Încărcare și Descărcare Documente</title>
+    <title>Document Sharing</title>
+    <style>
+        #fileList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #fileList li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
+    <h1>Document Sharing</h1>
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Upload</button>
 
-<h1>Încărcare Documente</h1>
+    <h2>Uploaded Documents:</h2>
+    <ul id="fileList"></ul>
 
-<form id="uploadForm" enctype="multipart/form-data">
-    <input type="file" id="fileToUpload" accept=".pdf, .doc, .docx">
-    <button type="button" onclick="uploadFile()">Încarcă Document</button>
-</form>
-
-<h2>Documente Încărcate</h2>
-<ul id="documentList">
-    <!-- Aici vor fi afișate documentele încărcate -->
-</ul>
-
-<script>
-    function uploadFile() {
-        var fileInput = document.getElementById('fileToUpload');
-        var file = fileInput.files[0];
-        var formData = new FormData();
-        formData.append('file', file);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'upload.php', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                console.log('Documentul a fost încărcat cu succes!');
-                refreshDocumentList();
-            } else {
-                console.error('Eroare la încărcare documentului.');
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            // Verificăm dacă utilizatorul a selectat un fișier
+            if (!file) {
+                alert('Please select a file.');
+                return;
             }
-        };
-        xhr.send(formData);
-    }
-
-    function refreshDocumentList() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'documents.json', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                var documentList = JSON.parse(xhr.responseText);
-                var ul = document.getElementById('documentList');
-                ul.innerHTML = '';
-                documentList.forEach(function (document) {
-                    var li = document.createElement('li');
-                    var link = document.createElement('a');
-                    link.href = document.url;
-                    link.textContent = document.name;
-                    li.appendChild(link);
-                    ul.appendChild(li);
-                });
-            } else {
-                console.error('Eroare la obținerea listei de documente.');
-            }
-        };
-        xhr.send();
-    }
-
-    // La încărcarea paginii, actualizează lista de documente
-    refreshDocumentList();
-</script>
-
+            
+            const fileList = document.getElementById('fileList');
+            
+            // Creăm un element list pentru a afișa informațiile despre fișier
+            const li = document.createElement('li');
+            li.textContent = file.name;
+            fileList.appendChild(li);
+            
+            // Resetăm valoarea câmpului de încărcare a fișierului
+            fileInput.value = '';
+        }
+    </script>
 </body>
 </html>
