@@ -1,39 +1,23 @@
 <?php
-// upload.php - Script PHP pentru încărcarea fișierelor pe server
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["file"])) {
-    $targetDirectory = "uploads/"; // Directorul în care să fie salvate fișierele încărcate
-    $targetFile = $targetDirectory . basename($_FILES["file"]["name"]);
-    $uploadOk = 1;
-    $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+// Directorul în care se vor salva fișierele încărcate
+$uploadDirectory = 'uploads/';
 
-    // Verificați dacă fișierul există deja
-    if (file_exists($targetFile)) {
-        echo "Fișierul există deja.";
-        $uploadOk = 0;
-    }
-
-    // Verificați dimensiunea fișierului (aici am setat o limită de 5 MB)
-    if ($_FILES["file"]["size"] > 5 * 1024 * 1024) {
-        echo "Fișierul este prea mare.";
-        $uploadOk = 0;
-    }
-
-    // Permiteți anumite formate de fișiere (aici, pdf, doc și docx)
-    if ($fileType !== "pdf" && $fileType !== "doc" && $fileType !== "docx") {
-        echo "Sunt permise doar fișiere PDF, DOC și DOCX.";
-        $uploadOk = 0;
-    }
-
-    // Încărcați fișierul dacă nu există erori
-    if ($uploadOk === 0) {
-        echo "Fișierul nu a fost încărcat.";
+// Verifică dacă fișierul a fost încărcat cu succes
+if ($_FILES['file']['error'] === UPLOAD_ERR_OK) {
+    // Generează un nume de fișier unic
+    $filename = uniqid() . '_' . basename($_FILES['file']['name']);
+    // Muta fișierul încărcat în directorul de încărcare
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadDirectory . $filename)) {
+        // Returnează URL-ul și numele fișierului pentru a fi utilizate în JavaScript
+        echo json_encode(['url' => $uploadDirectory . $filename, 'name' => basename($_FILES['file']['name'])]);
     } else {
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
-            echo "Fișierul " . htmlspecialchars(basename($_FILES["file"]["name"])) . " a fost încărcat.";
-        } else {
-            echo "A apărut o eroare la încărcarea fișierului.";
-        }
+        // Încărcarea a eșuat
+        http_response_code(500);
     }
+} else {
+    // Încărcarea a eșuat
+    http_response_code(500);
 }
+
 ?>
