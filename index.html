@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Încărcare și Afișare Documente</title>
+    <title>Încărcare și Descărcare Documente</title>
 </head>
 <body>
 
-<h1>Încărcare și Afișare Documente</h1>
+<h1>Încărcare Documente</h1>
 
 <form id="uploadForm" enctype="multipart/form-data">
     <input type="file" id="fileToUpload" accept=".pdf, .doc, .docx">
     <button type="button" onclick="uploadFile()">Încarcă Document</button>
 </form>
 
-<h2>Documente Încărcate:</h2>
-<ul id="documentList">
-    <!-- Lista documentelor încărcate va fi afișată aici -->
-</ul>
+<h1>Documente Disponibile</h1>
+<ul id="documentList"></ul>
 
 <script>
     function uploadFile() {
@@ -27,21 +25,21 @@
         formData.append('file', file);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'upload.php', true); // Înlocuiți 'upload.php' cu adresa URL a scriptului de încărcare pe serverul dvs.
+        xhr.open('POST', 'upload.php', true); // Înlocuiți 'upload.php' cu adresa URL a scriptului PHP pe serverul dvs.
         xhr.onload = function () {
             if (xhr.status === 200) {
                 console.log('Documentul a fost încărcat cu succes!');
-                refreshDocumentList(); // Actualizăm lista documentelor după încărcare
+                fetchDocumentList(); // Reîncărcați lista de documente după încărcare
             } else {
-                console.error('Eroare la încărcarea documentului.');
+                console.error('Eroare la încărcare documentului.');
             }
         };
         xhr.send(formData);
     }
 
-    function refreshDocumentList() {
+    function fetchDocumentList() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'documente.php', true); // Înlocuiți 'documente.php' cu adresa URL a scriptului pentru listarea documentelor pe serverul dvs.
+        xhr.open('GET', 'documents.php', true); // Înlocuiți 'documents.php' cu adresa URL a scriptului PHP pe serverul dvs.
         xhr.onload = function () {
             if (xhr.status === 200) {
                 var documentList = document.getElementById('documentList');
@@ -53,8 +51,8 @@
         xhr.send();
     }
 
-    // Afișăm lista de documente încărcate la încărcarea paginii
-    window.onload = refreshDocumentList;
+    // Afișați lista de documente la încărcarea paginii
+    fetchDocumentList();
 </script>
 
 </body>
