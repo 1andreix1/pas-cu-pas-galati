@@ -14,8 +14,10 @@
     <button type="button" onclick="uploadFile()">Încarcă Document</button>
 </form>
 
-<h1>Documente Disponibile</h1>
-<ul id="documentList"></ul>
+<h2>Documente Încărcate</h2>
+<ul id="documentList">
+    <!-- Aici vor fi afișate documentele încărcate -->
+</ul>
 
 <script>
     function uploadFile() {
@@ -25,11 +27,11 @@
         formData.append('file', file);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'upload.php', true); // Înlocuiți 'upload.php' cu adresa URL a scriptului PHP pe serverul dvs.
+        xhr.open('POST', 'upload.php', true);
         xhr.onload = function () {
             if (xhr.status === 200) {
                 console.log('Documentul a fost încărcat cu succes!');
-                fetchDocumentList(); // Reîncărcați lista de documente după încărcare
+                refreshDocumentList();
             } else {
                 console.error('Eroare la încărcare documentului.');
             }
@@ -37,13 +39,22 @@
         xhr.send(formData);
     }
 
-    function fetchDocumentList() {
+    function refreshDocumentList() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'documents.php', true); // Înlocuiți 'documents.php' cu adresa URL a scriptului PHP pe serverul dvs.
+        xhr.open('GET', 'documents.json', true);
         xhr.onload = function () {
             if (xhr.status === 200) {
-                var documentList = document.getElementById('documentList');
-                documentList.innerHTML = xhr.responseText;
+                var documentList = JSON.parse(xhr.responseText);
+                var ul = document.getElementById('documentList');
+                ul.innerHTML = '';
+                documentList.forEach(function (document) {
+                    var li = document.createElement('li');
+                    var link = document.createElement('a');
+                    link.href = document.url;
+                    link.textContent = document.name;
+                    li.appendChild(link);
+                    ul.appendChild(li);
+                });
             } else {
                 console.error('Eroare la obținerea listei de documente.');
             }
@@ -51,8 +62,8 @@
         xhr.send();
     }
 
-    // Afișați lista de documente la încărcarea paginii
-    fetchDocumentList();
+    // La încărcarea paginii, actualizează lista de documente
+    refreshDocumentList();
 </script>
 
 </body>
