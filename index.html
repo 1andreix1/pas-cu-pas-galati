@@ -1,48 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Sharing</title>
-    <style>
-        #fileList {
-            list-style-type: none;
-            padding: 0;
-        }
-        #fileList li {
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incarcare documente</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Document Sharing</h1>
-    <input type="file" id="fileInput">
-    <button onclick="uploadFile()">Upload</button>
-
-    <h2>Uploaded Documents:</h2>
-    <ul id="fileList"></ul>
-
-    <script>
-        function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            
-            // Verificăm dacă utilizatorul a selectat un fișier
-            if (!file) {
-                alert('Please select a file.');
-                return;
-            }
-            
-            const fileList = document.getElementById('fileList');
-            
-            // Creăm un element list pentru a afișa informațiile despre fișier
-            const li = document.createElement('li');
-            li.textContent = file.name;
-            fileList.appendChild(li);
-            
-            // Resetăm valoarea câmpului de încărcare a fișierului
-            fileInput.value = '';
-        }
-    </script>
+  <h1>Incarca documente</h1>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="document" accept=".doc,.docx,.pdf">
+    <button type="submit">Incarca</button>
+  </form>
+  <div id="documents">
+    </div>
+  <script src="script.js"></script>
 </body>
 </html>
