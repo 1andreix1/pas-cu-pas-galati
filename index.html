@@ -3,35 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Încarcă Document</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        input[type="file"] {
-            margin: 20px;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #555;
-        }
-    </style>
+    <title>Încărcare și Afișare Documente</title>
 </head>
 <body>
-    <h1>Încarcă Document</h1>
-    <form action="#" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" id="file">
-        <br>
-        <input type="submit" value="Încarcă Document">
-    </form>
+
+<h1>Încărcare și Afișare Documente</h1>
+
+<form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="fileToUpload" accept=".pdf, .doc, .docx">
+    <button type="button" onclick="uploadFile()">Încarcă Document</button>
+</form>
+
+<h2>Documente Încărcate:</h2>
+<ul id="documentList">
+    <!-- Lista documentelor încărcate va fi afișată aici -->
+</ul>
+
+<script>
+    function uploadFile() {
+        var fileInput = document.getElementById('fileToUpload');
+        var file = fileInput.files[0];
+        var formData = new FormData();
+        formData.append('file', file);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'upload.php', true); // Înlocuiți 'upload.php' cu adresa URL a scriptului de încărcare pe serverul dvs.
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log('Documentul a fost încărcat cu succes!');
+                refreshDocumentList(); // Actualizăm lista documentelor după încărcare
+            } else {
+                console.error('Eroare la încărcarea documentului.');
+            }
+        };
+        xhr.send(formData);
+    }
+
+    function refreshDocumentList() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'documente.php', true); // Înlocuiți 'documente.php' cu adresa URL a scriptului pentru listarea documentelor pe serverul dvs.
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var documentList = document.getElementById('documentList');
+                documentList.innerHTML = xhr.responseText;
+            } else {
+                console.error('Eroare la obținerea listei de documente.');
+            }
+        };
+        xhr.send();
+    }
+
+    // Afișăm lista de documente încărcate la încărcarea paginii
+    window.onload = refreshDocumentList;
+</script>
+
 </body>
 </html>
